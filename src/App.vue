@@ -1,31 +1,65 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-    <HelloWorld msg="Vite + Vue" />
-  </div>
+  <v-app id="inspire">
+
+    <v-spacer></v-spacer>
+    <v-spacer></v-spacer>
+
+    <v-navigation-drawer v-model="drawer">
+      <v-sheet
+        color="grey-lighten-4"
+        class="pa-4"
+      >
+        <v-avatar
+          class="mb-4"
+          color="grey-darken-1"
+          size="64"
+        ></v-avatar>
+
+        <div>john@google.com</div>
+      </v-sheet>
+
+      <v-divider></v-divider>
+
+      <v-list>
+        <v-list-item
+          v-for="[icon, index] in links"
+          :key="index"
+          :to="icon[2]"
+          link
+        >
+          <template v-slot:prepend>
+            <v-icon>{{ icon }}</v-icon>
+          </template>
+          <!-- <router-link to {{ linker }}></router-link> -->
+
+          <v-list-item-title>{{ text }}</v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+
+    <router-view></router-view>
+  </v-app>
   
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+<script>
+
+  export default {
+    data: () => ({
+      cards: ['Today', 'Yesterday'],
+      drawer: null,
+      links: [
+        
+        ['mdi-inbox-arrow-down', 'Profile', '/profile'],
+        ['mdi-send', 'Create Forum', '/create'],
+        ['mdi-delete', 'Home', '/'],
+        ['mdi-send', 'Login','/login']
+      ],
+    }),
+    methods: {
+      link(){
+        
+      }
+    },
+  }
+</script>
