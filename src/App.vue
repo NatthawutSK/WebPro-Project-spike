@@ -22,17 +22,17 @@
 
       <v-list>
         <v-list-item
-          v-for="[icon, index] in links"
-          :key="index"
-          :to="icon[2]"
+          v-for="icon in links"
+          :to="icon.url"
+          :title = icon.text
           link
         >
           <template v-slot:prepend>
-            <v-icon>{{ icon }}</v-icon>
+            <v-icon>{{ icon.icon }}</v-icon>
           </template>
           <!-- <router-link to {{ linker }}></router-link> -->
 
-          <v-list-item-title>{{ text }}</v-list-item-title>
+         
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -50,10 +50,10 @@
       drawer: null,
       links: [
         
-        ['mdi-inbox-arrow-down', 'Profile', '/profile'],
-        ['mdi-send', 'Create Forum', '/create'],
-        ['mdi-delete', 'Home', '/'],
-        ['mdi-send', 'Login','/login']
+        {icon:'mdi-inbox-arrow-down',text: 'Profile', url:'/profile'},
+        {icon:'mdi-send', text:'Create Forum', url:'/create'},
+        {icon:'mdi-delete', text:'Home', url:'/'},
+        {icon:'mdi-send', text:'Login',url:'/login'}
       ],
     }),
     methods: {
