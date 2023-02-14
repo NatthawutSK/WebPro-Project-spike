@@ -21,13 +21,15 @@
       <v-divider></v-divider>
 
       <v-list>
+        <!-- to au when u use v-for u have to binding key duay -->
         <v-list-item
-          v-for="icon in links"
+          v-for="(icon,index) in links"
+          :key="index"
           :to="icon.url"
           :title = icon.text
           link
         >
-          <template v-slot:prepend>
+          <template #prepend>
             <v-icon>{{ icon.icon }}</v-icon>
           </template>
           <!-- <router-link to {{ linker }}></router-link> -->
@@ -56,10 +58,6 @@
         {icon:'mdi-send', text:'Login',url:'/login'}
       ],
     }),
-    methods: {
-      link(){
-        
-      }
-    },
+    
   }
 </script>
